@@ -1,5 +1,7 @@
 import React, {Component} from "react";
-import './Searchbar.css'
+import '../styles.css'
+// import './Searchbar.css'
+
 
 class Searchbar extends Component { 
     state = {
@@ -16,15 +18,15 @@ class Searchbar extends Component {
     render() {
         console.log("searshName в рендері", this.state.searshName);
     return (
-        <header class="searchbar">
-            <form onSubmit={this.handleSubmit }class="form">
-                <button type="submit" class="button">
-                    <span class="button-label">Search</span>
+        <header class="Searchbar">
+            <form onSubmit={this.handleSubmit } class="SearchForm ">
+                <button type="submit" class="SearchForm-button">
+                    <span class="button">Search</span>
                 </button>
 
                 <input
                     onChange={this.handleInput}
-                    class="input"
+                    class="SearchForm-input "
                     type="text"
                     value={this.state.searshName}
                     autocomplete="off"
