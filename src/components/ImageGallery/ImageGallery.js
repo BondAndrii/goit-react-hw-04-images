@@ -1,11 +1,11 @@
 import React from "react";
+import ImageGalleryItem from "components/ImageGalleryItem/ImageGalleryItem";
 
 const ImageGallery = props => 
 (<ul>
-    {props.echo.map(e =>
-    (<li>
-        <img src={e.previewURL} alt={e.tags} />
-    </li>))}   
+    {props.echo.map(e => 
+        <ImageGalleryItem echo={e} />
+    )}   
 </ul>)
 
 // (
