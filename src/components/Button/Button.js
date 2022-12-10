@@ -1,6 +1,6 @@
 import React from "react";
 import './Button.css'
 
-const Button = () => (<button type="button" className="Button">Load more</button>)
+const Button = ({onClick}) => (<button type="button" className="Button" onClick={onClick}>Load more</button>)
 
 export default Button;
