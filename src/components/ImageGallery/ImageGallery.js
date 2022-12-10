@@ -1,8 +1,9 @@
 import React from "react";
 import ImageGalleryItem from "components/ImageGalleryItem/ImageGalleryItem";
+import "./ImageGallery.css"
 
 const ImageGallery = props => 
-(<ul>
+(<ul className="ImageGallery">
     {props.echo.map(e => 
         <ImageGalleryItem echo={e} />
     )}   

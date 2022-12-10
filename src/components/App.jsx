@@ -3,6 +3,7 @@ import { Component } from "react";
 import Searchbar from "./Searchbar/Searchbar";
 import './styles.css'
 import ImageGallery from "./ImageGallery/ImageGallery";
+import Button from "./Button/Button";
 
 
 
@@ -48,10 +49,11 @@ export default class App extends Component {
   render() {
     const { loading, image } = this.state;
     return (
-      <div>
+      <div className="App">
         <Searchbar onSubmit={this.handleSubmit} />
         {loading && <div>Грузимся</div>}
         {image && <ImageGallery echo={this.state.image} />}
+        <Button/>
         {/* {image && image.map(picture => (
         <li >
           <img src={picture.largeImageURL} alt="kjbkjb" />
