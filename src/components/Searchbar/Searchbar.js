@@ -1,36 +1,42 @@
 import React, {Component} from "react";
 import '../styles.css'
+
 // import './Searchbar.css'
 
 
 class Searchbar extends Component { 
     state = {
-        searshName: '',
+        searchName: '',
     }
     handleInput = e => {
-        this.setState({ searshName: e.currentTarget.value.toLowerCase() })
+        this.setState({ searchName: e.currentTarget.value.toLowerCase() })
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.onSubmit(this.state.searshName);
-        console.log("searshName при сабмите", this.state.searshName)
+        if (this.state.searchName.trim() === '') {
+                alert('Please enter name for search');
+            return;
+        }
+        this.props.onSubmit(this.state.searchName);
+        // console.log("searshName при сабмите", this.state.searshName);
+        this.state({ searchName: '' });
     }
     render() {
         console.log("searshName в рендері", this.state.searshName);
     return (
-        <header class="Searchbar">
-            <form onSubmit={this.handleSubmit } class="SearchForm ">
-                <button type="submit" class="SearchForm-button">
-                    <span class="button">Search</span>
+        <header className="Searchbar">
+            <form onSubmit={this.handleSubmit } className="SearchForm ">
+                <button type="submit" className="SearchForm-button">
+                    <span >Search</span>
                 </button>
 
                 <input
                     onChange={this.handleInput}
-                    class="SearchForm-input "
+                    className="SearchForm-input "
                     type="text"
-                    value={this.state.searshName}
-                    autocomplete="off"
-                    autofocus
+                    value={this.state.searchName}
+                    autoComplete="off"
+                    autoFocus
                     placeholder="Search images and photos"
                 />
             </form>
