@@ -19,7 +19,7 @@ class Searchbar extends Component {
         }
         this.props.onSubmit(this.state.searchName);
         // console.log("searshName при сабмите", this.state.searshName);
-        this.state({ searchName: '' });
+        this.setState ({ searchName: '' });
     }
     render() {
         console.log("searshName в рендері", this.state.searshName);

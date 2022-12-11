@@ -12,7 +12,7 @@ export default class App extends Component {
   state = {
     searchName: '',
     image: null,
-    // previewImage: [],    
+    objForModal: null,  
     loading: false,
     showModal: false,
     page:1,
@@ -38,24 +38,47 @@ export default class App extends Component {
   handleSubmit = (searchName) => {    
     this.setState({
       searchName, // отримуємо ім'я пошукового слова з searchbar
-    });
-    // console.log("name", this.state.searchName)
+    });    
   }
   handleButton = (prevState) => {
     this.setState(prevState => ({
-      page: prevState.page +1,
-    }))
-    console.log("inButton", this.state.page)
+      page: prevState.page +1,// при натисканні кнопки збільшуємо номер сторінки на 1
+    }))    
   }
+  // toggleModal = () => {
+  //   this.setState(({ showModal }) => ({
+  //     showModal: !showModal,
+  //   }));
+  // }
+  handleClickImg = objForModal => {
+    // console.log(objForModal);
+    this.setState({
+      objForModal,
+      showModal: true,
+    });
+    console.log("after click", this.state);
+  }
+  // {
+  //   this.setState(
+  //     {
+  //       largeImage: largeImage,
+  //       showModal: true,
+  //     });
+  //   console.log("handleClickImg", this.state);
+  // }
   render() {
-    const { loading, image, showModal } = this.state;
+    const { loading, image, showModal, largeImage} = this.state;
     return (
       <div className="App">
         <Searchbar onSubmit={this.handleSubmit} />
         {loading && <div>Грузимся</div>}
-        {image && <ImageGallery echo={this.state.image} />}
+        {image && <ImageGallery echo={this.state.image} onClick={this.handleClickImg} />}
         {image && <Button onClick={this.handleButton} />}
-        {showModal && <Modal/>}
+        {/* {showModal &&
+          <Modal onClick={this.toggleModal}>
+            <img src={largeImage} alt="" />
+            </Modal>
+        } */}
       </div>
     );
   };
