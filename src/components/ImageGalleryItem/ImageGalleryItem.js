@@ -6,10 +6,10 @@ const ImageGalleryItem = (props) =>
     (<li className="ImageGalleryItem">
     <img
         className="ImageGalleryItem-image"        
-        id={props.echo.id}
-        src={props.echo.previewURL}
-        alt={props.echo.tags}
-        onClick={() => props.onClick(props.echo)}
+        id={props.item.id}
+        src={props.item.previewURL}
+        alt={props.item.tags}
+        onClick={() => props.onClick(props.item)}
     />
     </li>);
     

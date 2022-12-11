@@ -5,7 +5,7 @@ import "./ImageGallery.css"
 const ImageGallery = props => 
 (<ul className="ImageGallery">
     {props.echo.map(e => 
-        <ImageGalleryItem key={e.id} echo={e} onClick={props.onClick} />
+        <ImageGalleryItem key={e.id} item={e} onClick={props.onClick} />
     )}   
 </ul>)
 

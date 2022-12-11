@@ -12,7 +12,7 @@ export default class App extends Component {
   state = {
     searchName: '',
     image: null,
-    objForModal: null,  
+    forModal: "",  
     loading: false,
     showModal: false,
     page:1,
@@ -50,13 +50,15 @@ export default class App extends Component {
   //     showModal: !showModal,
   //   }));
   // }
-  handleClickImg = objForModal => {
-    // console.log(objForModal);
+  handleClickImg = forModal => {
+    console.log("приход с итема", forModal);
     this.setState({
-      objForModal,
+      forModal,
       showModal: true,
-    });
+    })
+    
     console.log("after click", this.state);
+    
   }
   // {
   //   this.setState(
@@ -67,18 +69,17 @@ export default class App extends Component {
   //   console.log("handleClickImg", this.state);
   // }
   render() {
-    const { loading, image, showModal, largeImage} = this.state;
+    const { loading, image, showModal,} = this.state;
     return (
       <div className="App">
         <Searchbar onSubmit={this.handleSubmit} />
         {loading && <div>Грузимся</div>}
         {image && <ImageGallery echo={this.state.image} onClick={this.handleClickImg} />}
         {image && <Button onClick={this.handleButton} />}
-        {/* {showModal &&
-          <Modal onClick={this.toggleModal}>
-            <img src={largeImage} alt="" />
-            </Modal>
-        } */}
+        {showModal &&
+          <Modal forRender={this.state.forModal}/>            
+          
+        }
       </div>
     );
   };
