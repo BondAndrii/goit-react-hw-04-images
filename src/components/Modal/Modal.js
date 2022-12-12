@@ -30,11 +30,16 @@ class Modal extends Component {
                 console.log(e.code);
                 this.props.onClose();
             }
+    }
+    handleBackdropClick = e => {
+        if (e.currentTarget === e.target) {
+            this.props.onClose();
         }
+    }
     render() {
         const { largeImage, tags } = this.state;
         return createPortal(
-            <div className="Overlay">
+            <div className="Overlay" onClick={this.handleBackdropClick}>
                 <div className="Modal"> 
                     {/* {this.props.children} */}
                     {/* <h1>Кликнулось</h1>     */}
