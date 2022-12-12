@@ -10,36 +10,36 @@ class Modal extends Component {
     state = {
         largeImage: '',
         alt: '',
-        showModal: false,
+        // showModal: false,
     }
     // viz = () => console.log(this.state.largeImage);
     componentDidMount() {
+        const { largeImageURL, tags } = this.props.forRender;
         this.setState({
-            largeImage: this.props.forRender.largeImageURL,
-            alt: this.props.forRender.tags,
-            showModal: true,
-
-        })
-        console.log("in modal", this.state)
+            largeImage: largeImageURL,
+            alt: tags,
+        });
+        window.addEventListener('keydown', this.handleKeyDown)
     }
-    // componentDidUpdate(prevState) {
-    //     if (this.state.largeImage !== prevState.largeImage) {
-    //         this.setState(prevState => ({
-    //             largeImage:"",
-    //             showModal:true,
-    //         }))
-    //         console.log("in modal", this.state )
-    //     }
-            
-    // }
-    
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.handleKeyDown)
+        
+    }
+    handleKeyDown = e => {
+            if (e.code === 'Escape') {
+                console.log(e.code);
+                this.props.onClose();
+            }
+        }
     render() {
+        const { largeImage, tags } = this.state;
         return createPortal(
             <div className="Overlay">
                 <div className="Modal"> 
                     {/* {this.props.children} */}
                     {/* <h1>Кликнулось</h1>     */}
-                    <img src={this.state.largeImage} alt={this.state.tags} />
+                    <img src={largeImage} alt={tags} />
+                    {/* <button type="button" onClick={this.props.onClose}>жми</button> */}
                 </div>
             </div>, 
             modalRoot

@@ -1,4 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+
+
 import '../styles.css'
 
 // import './Searchbar.css'
@@ -14,7 +16,7 @@ class Searchbar extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.searchName.trim() === '') {
-                alert('Please enter name for search');
+            alert('Please enter name for search');            
             return;
         }
         this.props.onSubmit(this.state.searchName);
@@ -39,6 +41,7 @@ class Searchbar extends Component {
                     autoFocus
                     placeholder="Search images and photos"
                 />
+                
             </form>
         </header>
     )
