@@ -2,7 +2,7 @@ import React from "react";
 import './ImageGalleryItem.css'
 
 const ImageGalleryItem = (props) =>
-    // console.log(props.echo);
+    // console.log(props);
     (<li className="ImageGalleryItem">
     <img
         className="ImageGalleryItem-image"        

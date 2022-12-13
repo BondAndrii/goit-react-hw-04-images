@@ -9,10 +9,9 @@ const modalRoot = document.querySelector('#modal-root');
 class Modal extends Component {
     state = {
         largeImage: '',
-        alt: '',
-        // showModal: false,
+        alt: '',        
     }
-    // viz = () => console.log(this.state.largeImage);
+    
     componentDidMount() {
         const { largeImageURL, tags } = this.props.forRender;
         this.setState({
@@ -41,8 +40,7 @@ class Modal extends Component {
         return createPortal(
             <div className="Overlay" onClick={this.handleBackdropClick}>
                 <div className="Modal"> 
-                    {/* {this.props.children} */}
-                    {/* <h1>Кликнулось</h1>     */}
+                    {/* {this.props.children} */}                    
                     <img src={largeImage} alt={tags} />
                     {/* <button type="button" onClick={this.props.onClose}>жми</button> */}
                 </div>
