@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import ImageGalleryItem from "components/ImageGalleryItem/ImageGalleryItem";
 import Button from "components/Button/Button";
 import { BallTriangle } from "react-loader-spinner";
+import Modal from "components/Modal";
 import "./ImageGallery.css"
 
 class ImageGallery extends Component {
@@ -10,13 +11,15 @@ class ImageGallery extends Component {
         page: 1,
         images: [],
         loading: false,
+        forModal: {},
         status: 'idle',
-        
+        showModal: false,        
     }
     // 'idle'
     // 'pending'
     // 'resolved'
     // 'rejected'
+    // 'modal'
     async componentDidUpdate(prevProps, prevState) {
         const { searchName, page } = this.state;
         const key = '28720978-48527d1c9d73f1bfd555e68c2';
@@ -45,17 +48,30 @@ class ImageGallery extends Component {
     this.setState(prevState => ({
       page: prevState.page +1,// при натисканні кнопки збільшуємо номер сторінки на 1
     }))    
+    }
+    handleClickImg = forModal => {
+    // console.log("приход с итема", forModal);
+    this.setState({
+      forModal,
+      showModal:true,
+    })
+    
+    console.log("after click", this.state);
+    
   }
+    toggleModal = () => this.setState({
+    showModal: !this.state.showModal,
+  }) 
     render() {
-        const { images, status } = this.state;
+        const { images, status, showModal, forModal } = this.state;
         if (status === 'idle') {
-            return <h2>Щоб Ви хотіли побачити?..</h2>
+            return <h2>Введіть, щоб Ви хотіли побачити?..</h2>
         }
         if (status === 'pending') {
             return <BallTriangle
                             // className="Spiner"
-                    height="80"
-                    width="80"
+                    height="380"
+                    width="380"
                     radius="9"
                     color="green"
                     ariaLabel="loading"
@@ -70,27 +86,12 @@ class ImageGallery extends Component {
         return (
             <ul className="ImageGallery">                
                 {images.map(image => (
-                    <ImageGalleryItem key={image.id} item={image} onClick={this.props.onClick} />
+                    <ImageGalleryItem key={image.id} item={image} onClick={this.handleClickImg} />
                 ))}
-                {images && <Button onClick={this.handleButton} />}                    
-        </ul>)
+                <Button onClick={this.handleButton} /> 
+                {showModal && <Modal forRender={forModal} onClose={this.toggleModal} />}
+            </ul>)
     }}
 }
-// const ImageGallery = props => 
-// (<ul className="ImageGallery">
-//     {props.echo.map(e => 
-//         <ImageGalleryItem key={e.id} item={e} onClick={props.onClick} />
-//     )}   
-// </ul>)
-
-// (
-//     <ul >
-//         {echo.map(e => (
-//             <li >
-//                 <img src={e.previewImage} alt="mhvnv" />
-//             </li>
-//         ))}
-//     </ul>
-// );
 
 export default ImageGallery;
