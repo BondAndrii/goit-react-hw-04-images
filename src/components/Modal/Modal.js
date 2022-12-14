@@ -1,6 +1,7 @@
 
 import React, { Component } from "react";
 import { createPortal } from "react-dom";
+import PropTypes from 'prop-types';
 import "./Modal.css";
 
 
@@ -52,3 +53,8 @@ class Modal extends Component {
 
 
 export default Modal;
+
+Modal.propTypes = {
+    forRender: PropTypes.object,
+    onClose: PropTypes.func,
+}

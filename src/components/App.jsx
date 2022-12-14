@@ -1,10 +1,8 @@
 import { Component } from "react";
 // import { ToastContainer } from "react-toastify";
-
-
 import Searchbar from "./Searchbar/Searchbar";
 import './styles.css'
-import ImageGallery from "./ImageGallery/ImageGallery";
+import ImageGallery from "./ImageGallery";
 
 export default class App extends Component {
   state = {

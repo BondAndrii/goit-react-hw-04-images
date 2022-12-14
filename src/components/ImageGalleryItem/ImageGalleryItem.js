@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import './ImageGalleryItem.css'
 
 const ImageGalleryItem = (props) =>
@@ -16,3 +17,11 @@ const ImageGalleryItem = (props) =>
 
 
 export default ImageGalleryItem;
+
+ImageGalleryItem.propTypes = {
+    key: PropTypes.number.isRequired,
+    item: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
+}
+
+ 
