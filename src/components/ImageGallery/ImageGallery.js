@@ -76,7 +76,7 @@ class ImageGallery extends Component {
     render() {
         const { images, status, showModal, forModal } = this.state;
         if (status === 'idle') {
-            return <h2>Ану, ану! Введи, що ти там хотів...</h2>
+            return <h2>Введіть, щоб ви хотіли побачити...</h2>
         }
         if (status === 'pending') {
             return <BallTriangle
@@ -91,7 +91,7 @@ class ImageGallery extends Component {
                     />
         }
         if (status === 'rejected') {
-            return <h2>Відчепись! Нема такого!</h2>
+            return <h2>Нажаль, нічого не знайшли</h2>
         }
         if (status === 'resolved'){
             return (
