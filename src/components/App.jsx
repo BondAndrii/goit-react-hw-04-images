@@ -18,7 +18,7 @@ export default class App extends Component {
     status: 'idle',
   } 
   async componentDidUpdate(prevProps, prevState) {
-        const { searchName, page, showBtn} = this.state;
+        const { searchName, page} = this.state;
         const key = '28720978-48527d1c9d73f1bfd555e68c2';    
     // console.log("in Gallery", this.props.searchName, this.state);
         if (prevState.searchName !== searchName || prevState.page !== page)
@@ -38,7 +38,9 @@ export default class App extends Component {
                         status: 'resolved',
                     })
               }
-              if (imagesList.length === 12) {
+              const totalHits = imagesData.totalHits
+              const maxPage = Math.ceil(totalHits / 12)
+              if (page < maxPage  ) {
                 this.setState({
                   showBtn: true,
                 })
@@ -48,7 +50,7 @@ export default class App extends Component {
                   showBtn: false,
                 })
               }
-              console.log("in fetch", imagesData.totalHits) 
+              console.log("in fetch", maxPage) 
             
             } catch (error) {
                 alert(error);
