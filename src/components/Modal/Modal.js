@@ -16,16 +16,17 @@ export default function Modal({forRender, onClose}) {
     useEffect(() => {
         setLargeImage(forRender.largeImageURL);
         setAlt(forRender.tags);
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    },[])
-    const handleKeyDown = e => {
+        const handleKeyDown = e => {
         console.log("handleKeyDown", handleKeyDown)
             if (e.code === 'Escape') {
                 console.log(e.code);
                 onClose();
             }
     }
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    },[forRender, onClose])
+    
     const handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
             onClose();
