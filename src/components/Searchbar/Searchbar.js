@@ -7,7 +7,7 @@ import '../styles.css'
 
 // import './Searchbar.css'
 
-export default function Searchbar(priSubmit) {
+export default function Searchbar({priSubmit}) {
     const [searchName, setSearchName] = useState('');
     const handleInput = e => {
         setSearchName(e.currentTarget.value.toLowerCase());
