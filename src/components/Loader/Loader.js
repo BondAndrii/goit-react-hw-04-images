@@ -4,7 +4,7 @@ import { BallTriangle } from "react-loader-spinner";
 
 const Loader = () => (
     <BallTriangle
-                            // className="Spiner"
+                            
                     height="380"
                     width="380"
                     radius="9"

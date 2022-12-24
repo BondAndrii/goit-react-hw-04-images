@@ -19,7 +19,7 @@ const ImageGalleryItem = (props) =>
 export default ImageGalleryItem;
 
 ImageGalleryItem.propTypes = {
-    key: PropTypes.number.isRequired,
+    // key: PropTypes.number.isRequired,
     item: PropTypes.object.isRequired,
     onClick: PropTypes.func.isRequired,
 }
