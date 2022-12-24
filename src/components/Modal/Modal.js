@@ -1,5 +1,8 @@
 
-import React, { Component } from "react";
+import React from "react";
+// import { Component } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import PropTypes from 'prop-types';
 import "./Modal.css";
@@ -7,52 +10,86 @@ import "./Modal.css";
 
 const modalRoot = document.querySelector('#modal-root');
 
-class Modal extends Component {
-    state = {
-        largeImage: '',
-        alt: '',        
-    }
-    
-    componentDidMount() {
-        const { largeImageURL, tags } = this.props.forRender;
-        this.setState({
-            largeImage: largeImageURL,
-            alt: tags,
-        });
-        window.addEventListener('keydown', this.handleKeyDown)
-    }
-    componentWillUnmount() {
-        window.removeEventListener('keydown', this.handleKeyDown)
-        
-    }
-    handleKeyDown = e => {
+export default function Modal({forRender, onClose}) {
+    const [largeImage, setLargeImage] = useState('');
+    const [alt, setAlt] = useState('');
+    useEffect(() => {
+        setLargeImage(forRender.largeImageURL);
+        setAlt(forRender.tags);
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    },[])
+    const handleKeyDown = e => {
+        console.log("handleKeyDown", handleKeyDown)
             if (e.code === 'Escape') {
                 console.log(e.code);
-                this.props.onClose();
+                onClose();
             }
     }
-    handleBackdropClick = e => {
+    const handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
-            this.props.onClose();
+            onClose();
         }
     }
-    render() {
-        const { largeImage, tags } = this.state;
-        return createPortal(
-            <div className="Overlay" onClick={this.handleBackdropClick}>
-                <div className="Modal"> 
-                    {/* {this.props.children} */}                    
-                    <img src={largeImage} alt={tags} />
-                    {/* <button type="button" onClick={this.props.onClose}>жми</button> */}
-                </div>
-            </div>, 
-            modalRoot
-        )
-    };
+    return createPortal(
+        <div className="Overlay" onClick={handleBackdropClick}>
+            <div className="Modal">
+                {/* {this.props.children} */}
+                <img src={largeImage} alt={alt} />
+                {/* <button type="button" onClick={this.props.onClose}>жми</button> */}
+            </div>
+        </div>,
+        modalRoot
+    );
+
 }
+//------------------CLASS-------------------CLASS------------------CLASS-----------------//
+// class Modal extends Component {
+//     state = {
+//         largeImage: '',
+//         alt: '',        
+//     }
+    
+//     componentDidMount() {
+//         const { largeImageURL, tags } = this.props.forRender;
+//         this.setState({
+//             largeImage: largeImageURL,
+//             alt: tags,
+//         });
+//         window.addEventListener('keydown', this.handleKeyDown)
+//     }
+//     componentWillUnmount() {
+//         window.removeEventListener('keydown', this.handleKeyDown)
+        
+//     }
+//     handleKeyDown = e => {
+//             if (e.code === 'Escape') {
+//                 console.log(e.code);
+//                 this.props.onClose();
+//             }
+//     }
+//     handleBackdropClick = e => {
+//         if (e.currentTarget === e.target) {
+//             this.props.onClose();
+//         }
+//     }
+//     render() {
+//         const { largeImage, alt } = this.state;
+//         return createPortal(
+//             <div className="Overlay" onClick={this.handleBackdropClick}>
+//                 <div className="Modal"> 
+//                     {/* {this.props.children} */}                    
+//                     <img src={largeImage} alt={alt} />
+//                     {/* <button type="button" onClick={this.props.onClose}>жми</button> */}
+//                 </div>
+//             </div>, 
+//             modalRoot
+//         )
+//     };
+// }
 
 
-export default Modal;
+// export default Modal;
 
 Modal.propTypes = {
     forRender: PropTypes.object,

@@ -11,18 +11,18 @@ export default function Searchbar({priSubmit}) {
     const [searchName, setSearchName] = useState('');
     const handleInput = e => {
         setSearchName(e.currentTarget.value.toLowerCase());
-        console.log("в інпуті", searchName);
+        // console.log("в інпуті", searchName);
         // this.setState({ searchName: e.currentTarget.value.toLowerCase() })
     };
-    console.log(priSubmit);
+    // console.log(priSubmit);
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("searshName при сабмите раз", searchName);
+        // console.log("searshName при сабмите раз", searchName);
         if (searchName.trim() === '') {
             alert('Please enter name for search');            
             return;
         }
-        console.log("searshName при сабмите", searchName)
+        // console.log("searshName при сабмите", searchName)
         priSubmit(searchName);
         // return searchName;
         
