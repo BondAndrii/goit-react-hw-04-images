@@ -57,12 +57,7 @@ export default class App extends Component {
                     alert(error);
                   }
   }
-  handleSubmit = (searchName) => {    
-    this.setState({
-      searchName,// отримуємо ім'я пошукового слова з searchbar
-      images: [],
-    });    
-  }
+
  handleButton = (prevState) => {
     this.setState(prevState => ({
       page: prevState.page +1,// при натисканні кнопки збільшуємо номер сторінки на 1
@@ -81,11 +76,17 @@ export default class App extends Component {
     // console.log("after click", this.state);
     
   }
+  handleAppSubmit = (searchName) => {    
+    this.setState({
+      searchName,// отримуємо ім'я пошукового слова з searchbar
+      images: [],
+    });    
+  }
   render() {
     const { images, showModal, forModal, status, showBtn} = this.state;
     return (
       <div className="App">
-        <Searchbar onSubmit={this.handleSubmit} />
+        <Searchbar priSubmit={this.handleAppSubmit} />
         {status === 'idle' && <h2>Введіть, щоб ви хотіли побачити...</h2>}
         {status === 'pending' && <Loader />}
         {status === 'rejected' && <h2>Нажаль, за запитом нічого не знайшли</h2>}
