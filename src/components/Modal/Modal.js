@@ -1,7 +1,7 @@
 
 import React from "react";
 // import { Component } from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import PropTypes from 'prop-types';
@@ -11,13 +11,14 @@ import "./Modal.css";
 const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal({forRender, onClose}) {
-    const [largeImage, setLargeImage] = useState('');
-    const [alt, setAlt] = useState('');
+    // const [largeImage, setLargeImage] = useState('');
+    // const [alt, setAlt] = useState('');
+    const { largeImageURL, alt } = forRender;
     useEffect(() => {
-        setLargeImage(forRender.largeImageURL);
-        setAlt(forRender.tags);
+        // setLargeImage(forRender.largeImageURL);
+        // setAlt(forRender.tags);
         const handleKeyDown = e => {
-        console.log("handleKeyDown", handleKeyDown)
+        // console.log("handleKeyDown", handleKeyDown)
             if (e.code === 'Escape') {
                 console.log(e.code);
                 onClose();
@@ -25,7 +26,7 @@ export default function Modal({forRender, onClose}) {
     }
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    },[forRender, onClose])
+    },[ onClose])
     
     const handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
@@ -36,7 +37,7 @@ export default function Modal({forRender, onClose}) {
         <div className="Overlay" onClick={handleBackdropClick}>
             <div className="Modal">
                 {/* {this.props.children} */}
-                <img src={largeImage} alt={alt} />
+                <img src={largeImageURL} alt={alt} />
                 {/* <button type="button" onClick={this.props.onClose}>жми</button> */}
             </div>
         </div>,
