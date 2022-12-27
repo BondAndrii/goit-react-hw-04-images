@@ -15,14 +15,13 @@ export default function Modal({forRender, onClose}) {
         
         const handleKeyDown = e => {
         
-            if (e.code === 'Escape') {
-                console.log(e.code);
+            if (e.code === 'Escape') {                
                 onClose();
             }
     }
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    },[ onClose])
+    },[onClose])
     
     const handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
